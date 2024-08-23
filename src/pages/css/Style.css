@@ -1,0 +1,50 @@
+.slick-prev, .slick-next {
+  display: none !important;
+}
+
+.formContainer {
+  border-radius: 0px 0px 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100vw;
+  height: 100vh;
+}
+.formContainer .sliderWrapper {
+  position: relative;
+  display: grid;
+  height: 100vh;
+  width: 100%;
+}
+.formContainer .sliderWrapper .Form-step-container {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.formContainer .sliderWrapper .Form-step-container .stepBody {
+  height: 70vh;
+  width: 100%;
+}
+.formContainer .sliderWrapper .Form-step-container .nextStepButton {
+  letter-spacing: 1px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #fbf9f9;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 10px 60px;
+  margin: auto;
+  border-radius: 40px;
+  background-color: #a5851e;
+}
+.formContainer .sliderWrapper .Form-step-container .nextStepButton.disabled {
+  opacity: 70%;
+}
+.formContainer .sliderWrapper .previousStepButton {
+  margin: 0px;
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+}/*# sourceMappingURL=Style.css.map */
