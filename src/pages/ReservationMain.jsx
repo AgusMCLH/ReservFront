@@ -5,7 +5,7 @@ import './css/Style.css'
 function SliderFrom() {
   const prevButton = useRef();
   let [step, setStep] = useState(1);
-    const decreaseStep = () => { setStep(step - 1) };
+    const decreaseStep = () => { step>1?setStep(step - 1):null; };
     useEffect(() => {
       console.log(step);
     }, [step]);

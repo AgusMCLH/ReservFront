@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
+import React, {useRef} from "react";
 
 
-function StepBody1({setStep}) {
+function StepBody3({setStep}) {
     let button = useRef();
 
     const nextStepHandler = () => {
-      button.current.classList.contains('disabled') ? null : setStep(2);
+      button.current.classList.contains('disabled') ? null : setStep(4);
     }
    
     return (
@@ -18,4 +18,4 @@ function StepBody1({setStep}) {
     );
   }
 
-  export default StepBody1;
+  export default StepBody3;

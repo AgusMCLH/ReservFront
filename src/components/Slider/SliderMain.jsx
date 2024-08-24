@@ -1,6 +1,8 @@
 import React, {useEffect} from "react";
 import Slider from "react-slick";
 import StepBody1 from "../StepsBody/StepBody1";
+import StepBody2 from "../StepsBody/StepBody2";
+import StepBody3 from "../StepsBody/StepBody3";
 
 
 function SliderMain({step, setStep}) {
@@ -42,18 +44,8 @@ function SliderMain({step, setStep}) {
     return (
           <Slider {...settings} style={{width:'100vw'}}>
             <StepBody1 setStep={setStep}/>
-            <div className="Form-step-container">
-              <div className="stepBody">
-                <h1>2</h1>
-              </div>
-              <p className="nextStepButton disabled">Siguiente</p>
-            </div>
-            <div className="Form-step-container">
-              <div className="stepBody">
-                <h1>3</h1>
-              </div>
-              <p className="nextStepButton">Siguiente</p>
-            </div>
+            <StepBody2 setStep={setStep}/>
+            <StepBody3 setStep={setStep}/>
           </Slider>
     );
   }
