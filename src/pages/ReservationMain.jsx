@@ -28,7 +28,12 @@ function SliderFrom() {
     <div className="formContainer">
       <div className="sliderWrapper">
         <SliderMain setStep={setStep}  />
-        <p ref={prevButton} onClick={()=>{decreaseStep()}} className="previousStepButton">Atras</p>
+        <div ref={prevButton} onClick={()=>{decreaseStep()}} className="previousStepButton"></div>
+        <div className="ShopLogo"></div>
+        <div className="footer">
+          <div><p><span className="linkalike">Reserv</span> is powered by <span className="linkalike">Orbit</span></p></div>
+          <div></div>
+        </div>
       </div>
     </div>
   );

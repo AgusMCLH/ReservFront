@@ -20,17 +20,96 @@
         .Form-step-container{
             height: fit-content;
             .stepBody{
-                height: 70vh;
+                height: 73vh;
                 width: 100%;
+                .BodyWrapper{
+                    .BodyHeader{
+                        height: 10vh;
+                    }
+                    .ilustrationContainer{
+                        height: 20vh;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .ilustration{
+                            opacity: 70%;
+                            width: 100px;
+                            height: 100px;
+                        }
+                    }
+                    .Form{
+                        color: $color-tertiary;
+                        height: 40vh;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 30px;
+                        .inputWrapper{
+                            width: 80%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            position: relative;
+                            .inputIcon{
+                                opacity: 70%;
+                                position: absolute;
+                                left: 14px;
+                                width: 22px;
+                                height: 22px;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                background-position: center;
+                            }
+                            @mixin form{
+                                width: 100%;
+                                height: 40px;
+                                border: 1px solid lighten($color-tertiary, 40%) ;
+                                border-radius: 30px;
+                                background-color: transparent;
+                                text-indent: 15%;
+                                font-size: 1.2em;
+                                &:focus{
+                                    outline: none;
+                                }
+                            }
+                            select{
+                                @include form;
+                            }
+                            #restaurantSelection{
+                                &::after {
+                                    content: "";
+                                    display: inline-block;
+                                    cursor: pointer;
+                                    width: 10px;
+                                    height: 10px;
+                                    background-repeat: no-repeat;
+                                    background-color: red;
+                                    // background-image: url("/assets/small-help-icon.gif");
+                                }
+                            }
+                            #dateSelection{
+                                &::after{
+                                    content: 'Gola'
+                                }
+                            }
+                            input{
+                                @include form;
+                            }
+                        }
+                        
+                    }
+                }
             }
             .nextStepButton{
                 letter-spacing: 1px;
                 font-weight: 400;
                 text-transform: uppercase;
                 color: $background-color;
-                width: fit-content;
+                width: 80%;
                 height: fit-content;
-                padding: 10px 60px;
+                text-align: center;
+                padding: 10px;
                 margin: auto;
                 border-radius: 40px;
                 background-color: $color-primary;
@@ -39,11 +118,52 @@
                 opacity: 70%;
             }
         }
-        .previousStepButton{
-            margin: 0px;
+        @mixin stepButton{
             position: absolute;
-            bottom: 20px;
+            border-radius: 50px;
+            width: 40px;
+            height: 40px;
+            background-color: #00000010;
+            background-size: calc(100% - 10px);
+            background-repeat: no-repeat;
+            background-position: center;
+            top: 14px;
+        }
+        .previousStepButton{
+            @include stepButton;
+            background-image: url('../../assets/arrow-left.svg');
+            background-position: 3px center;
             left: 10px;
+        }
+        .ShopLogo{
+            @include stepButton;
+            background-size: cover;
+            background-image: url('../../assets/logo.png');
+            right: 10px;
+        }
+        .footer{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 5vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2em;
+            p{
+                color: $color-tertiary;
+                opacity: 40%;
+                margin: 0px 5px;
+                font-size: 10px;
+                .linkalike{
+                    color: $color-primary;
+                    text-decoration: none;
+                    cursor: pointer;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
         }
     }
 }
