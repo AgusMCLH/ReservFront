@@ -15,11 +15,11 @@ function StepBody1({setStep}) {
             <div className="BodyHeader">
             </div>
             <div className="ilustrationContainer">
-                <img className="ilustration" src="/img/forks.svg" alt="Fork ilustration"/>
+                <img className="ilustration" src="/img/reservNaranja.png" alt="Fork ilustration"/>
             </div>
             <div className="Form">
               <div className="inputWrapper">
-                <img className='inputIcon' src="/img/map.svg" alt="Location Selected Icon" />
+                <img className='inputIcon' src="/img/icons/map.svg" alt="Location Selected Icon" />
                 <select name="restaurantSelection" id="restaurantSelection">
                   <option value="01">Local 1</option>
                   <option value="02">Local 2</option>
@@ -27,11 +27,11 @@ function StepBody1({setStep}) {
                 </select>
               </div>
               <div className="inputWrapper">
-                <img className='inputIcon' src="/img/date.svg" alt="Date Selected Icon" />
-                <input type="text" id="dateSelection"/>
+                <img className='inputIcon' src="/img/icons/date.svg" alt="Date Selected Icon" />
+                <input  type="date" id="dateSelection" step='1'/>
               </div>
               <div className="inputWrapper">
-                <img className='inputIcon' src="/img/people.svg" alt="People Number Selected Icon" />
+                <img className='inputIcon' src="/img/icons/people.svg" alt="People Number Selected Icon" />
                 <input type="text" id="clientNumber"/>
               </div>
             </div>

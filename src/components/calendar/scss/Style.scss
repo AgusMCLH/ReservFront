@@ -1,0 +1,86 @@
+@import './../../../sass/VARIABLES.scss';
+$darkWhite: #444;
+$today: #003cff;
+$bg: darken(#fff, 10%);
+
+
+
+
+.calendar{
+  background: $bg;
+  width: 70%;
+  max-height: 800px;
+  max-width: 300px;
+  margin: 0px auto 20px auto;
+  padding: .5em;
+
+  &__info{
+    width: 95%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    border-bottom: 1px solid darken($bg, 10%);
+  }
+
+  &__prev, &__next{
+    color: $today;
+    cursor: pointer;
+    font-size: 1.3em;
+  }
+  &__prev{
+    img{
+      width: 20px;
+    }
+  }
+  &__next{
+    img{
+      width: 20px;
+      transform: scaleX(-1);
+    }
+  }
+  
+  &__week, &__dates{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 3px;
+  }
+
+  &__dates{
+    .calendar__item{
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;    
+      background-color: darken($bg, 10%);
+    }
+  }
+
+  &__month, &__year{
+    padding: .5em 0em;
+  }
+  &__month{
+    padding-left: 1em;
+  }
+  &__year{
+    padding-right: 1em;
+  }
+
+  &__item{
+    text-align: center;
+    height: 100%;
+  }
+
+  &__today{
+    width: 100%;
+    margin: auto;
+    border-bottom: 3px solid $today;
+  }
+
+  &__last-days{
+    color: darken($bg, 40%);
+    opacity: 1;
+  }
+}

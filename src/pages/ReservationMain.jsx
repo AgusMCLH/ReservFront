@@ -7,7 +7,6 @@ function SliderFrom() {
   let [step, setStep] = useState(1);
     const decreaseStep = () => { step>1?setStep(step - 1):null; };
     useEffect(() => {
-      console.log(step);
     }, [step]);
 
   useEffect(() => {

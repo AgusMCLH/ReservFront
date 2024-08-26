@@ -1,4 +1,5 @@
 import React, {useRef} from "react";
+import Calendar from "../calendar/Calendar";
 
 
 function StepBody2({setStep}) {
@@ -15,12 +16,10 @@ function StepBody2({setStep}) {
             <div className="BodyHeader">
             </div>
             <div className="ilustrationContainer">
-                <img className="ilustration" src="/img/form.svg" alt="Form ilustration"/>
+                <img className="ilustration" src="/img/logo.jpg" alt="Form ilustration"/>
             </div>
             <div className="Form">
-              <input type="text" />
-              <input type="text" />
-              <input type="text" />
+              <Calendar/>
             </div>
           </div>
         </div>

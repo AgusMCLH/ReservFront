@@ -5,7 +5,7 @@ import StepBody2 from "../StepsBody/StepBody2";
 import StepBody3 from "../StepsBody/StepBody3";
 
 
-function SliderMain({step, setStep}) {
+function SliderMain({ setStep}) {
     let settings = {
       dots: false,
       infinite: false,

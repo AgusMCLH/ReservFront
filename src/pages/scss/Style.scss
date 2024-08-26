@@ -11,16 +11,15 @@
     align-items: center;
     margin: auto;
     width: 100vw;
-    height: 100vh;
     .sliderWrapper{
+        min-height: 100vh;
         position: relative;
         display: grid;
-        height: 100vh;
         width: 100%;
         .Form-step-container{
             height: fit-content;
             .stepBody{
-                height: 73vh;
+                min-height: 73vh;
                 width: 100%;
                 .BodyWrapper{
                     .BodyHeader{
@@ -32,14 +31,15 @@
                         justify-content: center;
                         align-items: center;
                         .ilustration{
-                            opacity: 70%;
+                            // opacity: 70%;
                             width: 100px;
                             height: 100px;
                         }
                     }
                     .Form{
                         color: $color-tertiary;
-                        height: 40vh;
+                        max-height: 60vh;
+                        min-height: 40vh;
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
@@ -75,23 +75,6 @@
                             }
                             select{
                                 @include form;
-                            }
-                            #restaurantSelection{
-                                &::after {
-                                    content: "";
-                                    display: inline-block;
-                                    cursor: pointer;
-                                    width: 10px;
-                                    height: 10px;
-                                    background-repeat: no-repeat;
-                                    background-color: red;
-                                    // background-image: url("/assets/small-help-icon.gif");
-                                }
-                            }
-                            #dateSelection{
-                                &::after{
-                                    content: 'Gola'
-                                }
                             }
                             input{
                                 @include form;
@@ -131,14 +114,14 @@
         }
         .previousStepButton{
             @include stepButton;
-            background-image: url('../../assets/arrow-left.svg');
+            background-image: url('/img/icons/arrow-left.svg');
             background-position: 3px center;
             left: 10px;
         }
         .ShopLogo{
             @include stepButton;
             background-size: cover;
-            background-image: url('../../assets/logo.png');
+            background-image: url('/img/reserv.png');
             right: 10px;
         }
         .footer{
