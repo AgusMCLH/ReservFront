@@ -1,6 +1,7 @@
 .calendar {
-  background: #e6e6e6;
-  width: 70%;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  width: 80%;
   max-height: 800px;
   max-width: 300px;
   margin: 0px auto 20px auto;
@@ -28,6 +29,10 @@
   width: 20px;
   transform: scaleX(-1);
 }
+.calendar__week .calendar__item {
+  font-weight: 700;
+  grid-gap: 3px 5px;
+}
 .calendar__week, .calendar__dates {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -38,7 +43,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #cccccc;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+.calendar__dates .calendar__item:hover {
+  background-color: rgba(136, 173, 153, 0.7);
 }
 .calendar__month, .calendar__year {
   padding: 0.5em 0em;
@@ -54,11 +64,16 @@
   height: 100%;
 }
 .calendar__today {
+  font-weight: 700;
   width: 100%;
   margin: auto;
-  border-bottom: 3px solid #003cff;
+  border-bottom: 3px solid #003cff !important;
 }
-.calendar__last-days {
-  color: gray;
+.calendar__disabled, .calendar__last-days {
+  color: #999999;
   opacity: 1;
+  cursor: not-allowed !important;
+}
+.calendar__disabled:hover, .calendar__last-days:hover {
+  background-color: transparent !important;
 }/*# sourceMappingURL=Style.css.map */
