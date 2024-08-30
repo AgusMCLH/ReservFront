@@ -16,7 +16,7 @@ function StepBody2({setStep}) {
             <div className="BodyHeader">
             </div>
             <div className="ilustrationContainer">
-                <img className="ilustration" src="/img/logo.jpg" alt="Form ilustration"/>
+                <img className="ilustration" src="/img/reservNaranja.png" alt="Form ilustration"/>
             </div>
             <div className="Form">
               <Calendar/>

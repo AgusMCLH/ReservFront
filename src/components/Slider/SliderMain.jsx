@@ -5,7 +5,8 @@ import StepBody2 from "../StepsBody/StepBody2";
 import StepBody3 from "../StepsBody/StepBody3";
 
 
-function SliderMain({ setStep}) {
+function SliderMain({ setStep, data}) {
+    let [formInfo, setFormInfo] = React.useState({});
     let settings = {
       dots: false,
       infinite: false,
@@ -16,6 +17,7 @@ function SliderMain({ setStep}) {
       swipe: false,
     };
     useEffect(() => {
+      console.log(data);
       const nextStep = (e) => {
         if (e.target.classList.contains('disabled')) {
           return;
@@ -43,7 +45,7 @@ function SliderMain({ setStep}) {
     
     return (
           <Slider {...settings} style={{width:'100vw'}}>
-            <StepBody1 setStep={setStep}/>
+            <StepBody1 setStep={setStep} formInfo={formInfo} setFormInfo={setFormInfo} data={data}/>
             <StepBody2 setStep={setStep}/>
             <StepBody3 setStep={setStep}/>
           </Slider>

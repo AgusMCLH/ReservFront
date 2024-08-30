@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
+import LocalsList from "../LocalsList/LocalsList";
 
 
-function StepBody1({setStep}) {
+function StepBody1({setStep, data, formInfo, setFormInfo}) {
     let button = useRef();
 
     const nextStepHandler = () => {
@@ -17,23 +18,8 @@ function StepBody1({setStep}) {
             <div className="ilustrationContainer">
                 <img className="ilustration" src="/img/reservNaranja.png" alt="Fork ilustration"/>
             </div>
-            <div className="Form">
-              <div className="inputWrapper">
-                <img className='inputIcon' src="/img/icons/map.svg" alt="Location Selected Icon" />
-                <select name="restaurantSelection" id="restaurantSelection">
-                  <option value="01">Local 1</option>
-                  <option value="02">Local 2</option>
-                  <option value="03">Local 3</option>
-                </select>
-              </div>
-              <div className="inputWrapper">
-                <img className='inputIcon' src="/img/icons/date.svg" alt="Date Selected Icon" />
-                <input  type="date" id="dateSelection" step='1'/>
-              </div>
-              <div className="inputWrapper">
-                <img className='inputIcon' src="/img/icons/people.svg" alt="People Number Selected Icon" />
-                <input type="text" id="clientNumber"/>
-              </div>
+            <div>
+              <LocalsList locals={data.locals} setFormInfo={setFormInfo}/>
             </div>
           </div>
         </div>
