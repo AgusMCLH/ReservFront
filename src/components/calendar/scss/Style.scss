@@ -7,8 +7,9 @@ $bg: darken(#fff, 10%);
 
 
 .calendar{
-  background: $bg;
-  width: 70%;
+  border: 1px solid darken($bg, 10%);
+  border-radius: 8px;
+  width: 80%;
   max-height: 800px;
   max-width: 300px;
   margin: 0px auto 20px auto;
@@ -23,6 +24,10 @@ $bg: darken(#fff, 10%);
     font-size: 1.2em;
     text-transform: uppercase;
     border-bottom: 1px solid darken($bg, 10%);
+  }
+  &__prev.not-allowed, &__next.not-allowed{
+    opacity: 0;
+    cursor: initial;
   }
 
   &__prev, &__next{
@@ -41,8 +46,13 @@ $bg: darken(#fff, 10%);
       transform: scaleX(-1);
     }
   }
-  
-  &__week, &__dates{
+   &__week{
+    .calendar__item{
+      font-weight: 700;
+      grid-gap: 3px 5px;
+    }
+   }
+   &__week, &__dates{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-gap: 3px;
@@ -54,9 +64,16 @@ $bg: darken(#fff, 10%);
       display: flex;
       align-items: center;
       justify-content: center;    
-      background-color: darken($bg, 10%);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: .5s all;
+      &:hover{
+        background-color: rgba(136, 173, 153, 0.7);
+      }
     }
   }
+
+  
 
   &__month, &__year{
     padding: .5em 0em;
@@ -74,13 +91,18 @@ $bg: darken(#fff, 10%);
   }
 
   &__today{
+    font-weight: 700;
     width: 100%;
     margin: auto;
-    border-bottom: 3px solid $today;
+    border-bottom: 3px solid $today !important;
   }
 
-  &__last-days{
-    color: darken($bg, 40%);
+  &__disabled,&__last-days{
+    color: darken($bg, 30%);
     opacity: 1;
+    cursor: not-allowed !important;
+    &:hover{
+     background-color: transparent !important;
+   }
   }
 }

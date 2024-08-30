@@ -12,11 +12,23 @@ function Calendar() {
     let year = undefined;
     let prevMonthDOM = undefined;
     let nextMonthDOM = undefined;
+    let actualMonth = new Date().getMonth();
+    let actualYear = new Date().getFullYear();
+    const limit = 4;
 
     const writeMonth = (month) => {
+        if (actualMonth === monthNumber && actualYear === currentYear) { //Si el mes es el actual
+            document.getElementById('prev-month').classList.add('not-allowed'); //Desactivar el boton de mes anterior
+        }else{
+            document.getElementById('prev-month').classList.remove('not-allowed');
+        }
+        if (monthNumber - actualMonth >= limit-1 && actualYear === currentYear) { //Si la diferencia de meses es mayor a 3 y el año es el mismo
+            document.getElementById('next-month').classList.add('not-allowed'); 
+        }else{
+            document.getElementById('next-month').classList.remove('not-allowed');
+        }
+
         dates.innerHTML = '';
-        let actualMonth = new Date().getMonth();
-        let actualYear = new Date().getFullYear();
         
         for(let i = startDay(); i>0;i--){
             dates.innerHTML += ` <div class="calendar__date calendar__item calendar__last-days">
@@ -26,9 +38,11 @@ function Calendar() {
 
         for(let i=1; i<=getTotalDays(month); i++){
             if(i===currentDay&&month === actualMonth&&currentYear === actualYear){
-                dates.innerHTML += ` <div class="calendar__date calendar__item calendar__today">${i}</div>`;
+                dates.innerHTML += ` <div class="calendar__date calendar__item calendar__today selectionable">${i}</div>`;
+            }else if(i<currentDay&&month === actualMonth&&currentYear === actualYear){
+                dates.innerHTML += ` <div class="calendar__date calendar__item calendar__disabled">${i}</div>`;
             }else{
-                dates.innerHTML += ` <div class="calendar__date calendar__item">${i}</div>`;
+                dates.innerHTML += ` <div class="calendar__date calendar__item selectionable">${i}</div>`;
             }
         }
     }
@@ -58,6 +72,7 @@ function Calendar() {
     }
 
     const lastMonth = () => {
+        if (actualMonth === monthNumber && actualYear === currentYear) return;
         if(monthNumber !== 0){
             monthNumber--;
         }else{
@@ -69,6 +84,8 @@ function Calendar() {
     }
 
     const nextMonth = () => {
+        if (currentYear > actualYear) return;
+        if (monthNumber - actualMonth >= limit-1 && actualYear === currentYear) return;
         if(monthNumber !== 11){
             monthNumber++;
         }else{
@@ -80,13 +97,26 @@ function Calendar() {
     }
 
     const setNewDate = () => {
+
         currentDate.setFullYear(currentYear,monthNumber,currentDay);
         month.textContent = monthNames[monthNumber];
         year.textContent = currentYear.toString();
         dates.textContent = '';
         writeMonth(monthNumber);
     }
-
+    let dateSelected = undefined;
+    const selectHandeler = (e) => {
+        if(e.target.classList.contains('selectionable')){
+            console.log(dateSelected);
+            if(dateSelected){
+                dateSelected.classList.remove('selected');
+            }
+            dateSelected = e.target;
+            e.target.classList.add('selected');
+        }
+    }
+    
+    
     useEffect(() => {
         dates = document.getElementById('dates');
         month = document.getElementById('month');
@@ -99,7 +129,14 @@ function Calendar() {
         nextMonthDOM.addEventListener('click', nextMonth);
         month.textContent = monthNames[monthNumber];
         year.textContent = currentYear.toString();
+        let dateSelectors = document.getElementsByClassName('selectionable');
+        for(let i = 0; i<dateSelectors.length; i++){
+            dateSelectors[i].addEventListener('click', selectHandeler);
+        }
         return () => {
+            for(let i = 0; i<dateSelectors.length; i++){
+                dateSelectors[i].removeEventListener('click', selectHandeler);
+            }
             prevMonthDOM.removeEventListener('click', lastMonth);
             nextMonthDOM.removeEventListener('click', nextMonth);
         }
