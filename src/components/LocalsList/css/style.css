@@ -1,7 +1,91 @@
 .localList-Container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  gap: 1.2rem;
+}
+.localList-Container .LocalItem {
+  position: relative;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 15px;
+  border-radius: 3px;
+  transition: border 0.3s;
+  border: 1px solid #e6e6e6;
+}
+.localList-Container .LocalItem.selected {
+  border: 1px solid #e77810;
+}
+.localList-Container .LocalItem p {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0px;
+}
+.localList-Container .LocalItem__selectionButton {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+}
+.localList-Container .LocalItem__image {
+  width: 5rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.localList-Container .LocalItem__Info {
+  display: flex;
+  flex-direction: column;
+}
+.localList-Container .LocalItem__Info-LocalName {
+  font-size: 0.8em;
+  font-weight: 500;
+}
+.localList-Container .LocalItem__Info-LocalAddress, .localList-Container .LocalItem__Info-LocalSchedule {
+  font-size: 0.7em;
+  font-weight: 300;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.localList-Container .LocalItem__Info-LocalSchedule {
+  position: relative;
+}
+.localList-Container .LocalItem__Info-LocalSchedule-Toggler {
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.localList-Container .LocalItem__Info-LocalSchedule-Toggler:hover {
+  color: #000;
+  text-decoration: underline;
+}
+.localList-Container .LocalItem__Info-LocalSchedule-Popover {
+  display: none;
+  position: absolute;
+  background-color: #fbf9f9;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+  padding: 10px;
+  z-index: 1;
+  width: -moz-max-content;
+  width: max-content;
+  top: 3px;
+  left: 40px;
+}
+.localList-Container .LocalItem__Info-LocalSchedule-Popover-Item {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.localList-Container .LocalItem__Info-LocalSchedule-Popover-Item-Day {
+  font-weight: 500;
+}
+.localList-Container .LocalItem__Info-LocalSchedule-Toggler:hover + .LocalItem__Info-LocalSchedule-Popover {
+  display: block;
 }/*# sourceMappingURL=style.css.map */

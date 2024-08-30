@@ -1,7 +1,92 @@
+@import "../../../sass/VARIABLES.scss";
 .localList-Container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    gap: 1.2rem;
+    .LocalItem{
+        // overflow: hidden;
+        position: relative;
+        width: 300px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        padding: 15px;
+        border-radius: 3px;
+        transition: border .3s;
+        border: 1px solid darken(#fff, 10%);
+        &.selected{
+            border: 1px solid $color-primary;
+        }
+        p{
+            width: fit-content;
+            height: fit-content;
+            margin: 0px;
+        }
+        &__selectionButton{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+        }
+        &__image{
+            width: 5rem;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+        }
+        &__Info{
+            display: flex;
+            flex-direction: column;
+            &-LocalName{
+                font-size: .8em;
+                font-weight: 500;
+            }
+            &-LocalAddress,&-LocalSchedule{
+                font-size: .7em;
+                font-weight: 300;
+                width: fit-content;
+            }
+            &-LocalSchedule{
+                position: relative;
+                &-Toggler{
+                    transition: all .3s;
+                    cursor: pointer;
+                    &:hover{
+                        color: #000;
+                        text-decoration: underline;
+                    }
+                    
+                }
+                &-Popover{
+                    display: none;
+                    position: absolute;
+                    background-color: $background-color;
+                    border: 1px solid darken(#fff, 10%);
+                    border-radius: 3px;
+                    padding: 10px;
+                    z-index: 1;
+                    width: max-content;
+                    top: 3px;
+                    left: 40px;
+                    &-Item{
+                        display: flex;
+                        flex-direction: row;
+                        gap: 1rem;
+                        &-Day{
+                            font-weight: 500;
+                        }
+                    }
+                }
+                &-Toggler:hover + .LocalItem__Info-LocalSchedule-Popover{
+                    display: block;
+                }
+
+            }
+        }
+    }
+    
 }

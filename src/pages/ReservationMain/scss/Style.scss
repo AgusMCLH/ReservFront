@@ -1,4 +1,4 @@
-@import './../../sass/VARIABLES.scss';
+@import './../../../sass/VARIABLES.scss';
 
 .slick-prev, .slick-next {
     display: none !important;
@@ -31,7 +31,10 @@
                         justify-content: center;
                         align-items: center;
                         .ilustration{
-                            // opacity: 70%;
+                            @if $roundedMainIlustration{
+                                border-radius: 300px;
+                            }
+                            
                             width: 100px;
                             height: 100px;
                         }
