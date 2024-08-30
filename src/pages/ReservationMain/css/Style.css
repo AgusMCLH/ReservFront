@@ -101,6 +101,7 @@
   margin: auto;
   border-radius: 40px;
   background-color: #e77810;
+  cursor: pointer;
 }
 .formContainer .sliderWrapper .Form-step-container .nextStepButton.disabled {
   opacity: 70%;
