@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './css/Style.css'
 
-function Calendar() {
+function Calendar({data, formInfo, setFormInfo}) {
     let monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre','Octubre', 'Noviembre', 'Diciembre'];
     let currentDate = new Date();
     let currentDay = currentDate.getDate();
@@ -14,7 +14,46 @@ function Calendar() {
     let nextMonthDOM = undefined;
     let actualMonth = new Date().getMonth();
     let actualYear = new Date().getFullYear();
-    const limit = 4;
+    const limit = 3;
+    const days = ['Dom', 'Lun','Mar','Mie','Jue','Vie','Sab'];
+    let ClosedDays = [];
+    const getClosedDays = () => {
+        ClosedDays = [];
+        for(let i = 0; i<data.locals.length; i++){
+            if(data.locals[i]._id === formInfo.local){
+                if(data.locals[i].schedule.Lun.length === 0){
+                    ClosedDays.push('Lun');
+                }
+                if(data.locals[i].schedule.Mar.length === 0){
+                    ClosedDays.push('Mar');
+                }
+                if(data.locals[i].schedule.Mie.length === 0){
+                    ClosedDays.push('Mie');
+                }
+                if(data.locals[i].schedule.Jue.length === 0){
+                    ClosedDays.push('Jue');
+                }
+                if(data.locals[i].schedule.Vie.length === 0){
+                    ClosedDays.push('Vie');
+                }
+                if(data.locals[i].schedule.Sab.length === 0){
+                    ClosedDays.push('Sab');
+                }
+                if(data.locals[i].schedule.Dom.length === 0){
+                    ClosedDays.push('Dom');
+                }
+                return ;
+            }
+        }
+        return ;
+    }
+    
+    
+
+    const getDay = (day) => {
+        const dayName =  days[(new Date(currentYear, monthNumber, day).getDay())];
+        return dayName;
+    }
 
     const writeMonth = (month) => {
         if (actualMonth === monthNumber && actualYear === currentYear) { //Si el mes es el actual
@@ -38,11 +77,19 @@ function Calendar() {
 
         for(let i=1; i<=getTotalDays(month); i++){
             if(i===currentDay&&month === actualMonth&&currentYear === actualYear){
-                dates.innerHTML += ` <div class="calendar__date calendar__item calendar__today selectionable">${i}</div>`;
+                if(ClosedDays.includes(getDay(i))){
+                    dates.innerHTML += ` <div class="calendar__date calendar__today calendar__item calendar__disabled">${i}</div>`;
+                }else{
+                    dates.innerHTML += ` <div class="calendar__date calendar__today calendar__item selectionable">${i}</div>`;
+                }
             }else if(i<currentDay&&month === actualMonth&&currentYear === actualYear){
                 dates.innerHTML += ` <div class="calendar__date calendar__item calendar__disabled">${i}</div>`;
             }else{
-                dates.innerHTML += ` <div class="calendar__date calendar__item selectionable">${i}</div>`;
+                if(ClosedDays.includes(getDay(i))){
+                    dates.innerHTML += ` <div class="calendar__date calendar__item calendar__disabled">${i}</div>`;
+                }else{
+                    dates.innerHTML += ` <div class="calendar__date calendar__item selectionable">${i}</div>`;
+                }
             }
         }
     }
@@ -107,7 +154,6 @@ function Calendar() {
     let dateSelected = undefined;
     const selectHandeler = (e) => {
         if(e.target.classList.contains('selectionable')){
-            console.log(dateSelected);
             if(dateSelected){
                 dateSelected.classList.remove('selected');
             }
@@ -121,7 +167,7 @@ function Calendar() {
         dates = document.getElementById('dates');
         month = document.getElementById('month');
         year = document.getElementById('year');
-        
+        getClosedDays();
         prevMonthDOM = document.getElementById('prev-month');
         nextMonthDOM = document.getElementById('next-month');
         writeMonth(monthNumber);
@@ -141,7 +187,7 @@ function Calendar() {
             nextMonthDOM.removeEventListener('click', nextMonth);
         }
     }
-    ,[]);
+    ,[formInfo.local]);
     return (
         <div className="calendar">
             <div className="calendar__info">

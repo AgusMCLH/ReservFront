@@ -2,7 +2,7 @@ import React, {useRef} from "react";
 import Calendar from "../calendar/Calendar";
 
 
-function StepBody2({setStep}) {
+function StepBody2({setStep, data, formInfo, setFormInfo}) {
     let button = useRef();
 
     const nextStepHandler = () => {
@@ -19,7 +19,7 @@ function StepBody2({setStep}) {
                 <img className="ilustration" src="/img/reservNaranja.png" alt="Form ilustration"/>
             </div>
             <div className="Form">
-              <Calendar/>
+              <Calendar data={data} formInfo={formInfo} setFormInfo={setFormInfo}/>
             </div>
           </div>
         </div>

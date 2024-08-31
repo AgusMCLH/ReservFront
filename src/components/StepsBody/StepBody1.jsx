@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import LocalsList from "../LocalsList/LocalsList";
 
 
@@ -8,7 +8,13 @@ function StepBody1({setStep, data, formInfo, setFormInfo}) {
     const nextStepHandler = () => {
       button.current.classList.contains('disabled') ? null : setStep(2);
     }
-   
+    useEffect(() => {
+      if(formInfo.local){
+        button.current.classList.remove('disabled');
+      }else{
+        button.current.classList.add('disabled');
+      }
+    }, [formInfo]);
     return (
       <div className="Form-step-container">
         <div className="stepBody">
@@ -19,11 +25,11 @@ function StepBody1({setStep, data, formInfo, setFormInfo}) {
                 <img className="ilustration" src="/img/reservNaranja.png" alt="Fork ilustration"/>
             </div>
             <div>
-              <LocalsList locals={data.locals} setFormInfo={setFormInfo}/>
+              <LocalsList locals={data.locals} formInfo={formInfo} setFormInfo={setFormInfo}/>
             </div>
           </div>
         </div>
-        <p className="nextStepButton" ref={button} onClick={ ()=>{nextStepHandler()}}>Siguiente</p>
+        <p className="nextStepButton disabled" ref={button} onClick={ ()=>{nextStepHandler()}}>Siguiente</p>
       </div>
     );
   }
