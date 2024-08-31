@@ -1,12 +1,16 @@
 @import "../../../sass/VARIABLES.scss";
 .localList-Container{
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
     gap: 1.2rem;
+    width: fit-content;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: scroll;
     .LocalItem{
         // overflow: hidden;
         position: relative;
@@ -79,6 +83,10 @@
                         &-Day{
                             font-weight: 500;
                         }
+                    }
+                    &[last=true]{
+                        top: unset;
+                        bottom: 0px;
                     }
                 }
                 &-Toggler:hover + .LocalItem__Info-LocalSchedule-Popover{

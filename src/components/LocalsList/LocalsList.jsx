@@ -1,12 +1,11 @@
 import LocalItem from "./LocalItem/LocalItem";
 import "./css/style.css";
 
-const LocalsList = ({ locals, setFormInfo}) => {
+let localSelected = undefined;
+const LocalsList = ({ locals, formInfo, setFormInfo}) => {
 
-    let localSelected = undefined;
     const selectHandeler = (e) => {
-        console.log('actual: ',e.target.parentNode);
-        console.log('anterior: ',localSelected);
+        setFormInfo({...formInfo, local: e.target.attributes.localid.value});
         if(localSelected){
             localSelected.classList.remove('selected');
         }
@@ -17,7 +16,7 @@ const LocalsList = ({ locals, setFormInfo}) => {
     return (
         <div className="localList-Container" >
         {locals.map((local, index) => (
-            <LocalItem key={index} local={local} setFormInfo={setFormInfo} selectHandeler={selectHandeler} />
+            <LocalItem key={index} local={local} lastItem={index+1===locals.length?'true':'false'} formInfo={formInfo} setFormInfo={setFormInfo} selectHandeler={selectHandeler} />
         ))}
         </div>
     );
