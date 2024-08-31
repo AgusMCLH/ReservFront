@@ -11,6 +11,20 @@
     align-items: center;
     margin: auto;
     width: 100vw;
+    .progressBar{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 3px;
+        background-color: transparent;
+        &__progression{
+            width: 0%;
+            background-color: $color-primary;
+            height: 100%;
+            transition: width .4s;
+        }
+    }
     .sliderWrapper{
         min-height: 100vh;
         position: relative;

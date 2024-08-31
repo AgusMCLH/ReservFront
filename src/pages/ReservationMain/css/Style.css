@@ -10,6 +10,20 @@
   margin: auto;
   width: 100vw;
 }
+.formContainer .progressBar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 3px;
+  background-color: transparent;
+}
+.formContainer .progressBar__progression {
+  width: 0%;
+  background-color: #e77810;
+  height: 100%;
+  transition: width 0.4s;
+}
 .formContainer .sliderWrapper {
   min-height: 100vh;
   position: relative;

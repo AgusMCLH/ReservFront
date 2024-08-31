@@ -10,6 +10,12 @@ function SliderFrom({data}) {
   
 
   const decreaseStep = () => { step>1?setStep(step - 1):null; };
+  useEffect(() => {
+    const progressionBar = document.getElementById('progressBar__progression')
+    const finalStep = 3;
+    const stepPorcentage = 100/finalStep*(step-1);
+    progressionBar.style.width=`${stepPorcentage}%`
+  }, [step]);
   
   useEffect(() => {
     const prevStep = () => {
@@ -28,6 +34,9 @@ function SliderFrom({data}) {
  
   return (
     <div className="formContainer">
+      <div className="progressBar">
+        <div className="progressBar__progression" id="progressBar__progression"></div>
+      </div>
       <div className="sliderWrapper">
         <SliderMain data={data} setStep={setStep}  />
         <div ref={prevButton} onClick={()=>{decreaseStep()}} className="previousStepButton"></div>
