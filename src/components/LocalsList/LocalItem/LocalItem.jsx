@@ -1,14 +1,13 @@
 import { useEffect } from "react";
 
 const LocalItem = ({ local, formInfo, selectHandeler, setFormInfo, lastItem }) => {
-    console.log(local.name, lastItem);
-    
+
     const image = `https://picsum.photos/100/100?random=${local.id}`;   
     const getSchedule = () => {     
         let schedule = [];
         for (let day in local.schedule) {
             if (local.schedule[day].length > 0) {
-                schedule.push(`${day}: ${local.schedule[day][0]}${local.schedule[day][0]>=12?'pm':'am'}-${local.schedule[day][1]}${local.schedule[day][0]>=12?'pm':'am'}`);
+                schedule.push(`${day}: ${local.schedule[day][0]}${local.schedule[day][0]>=12?'pm':'am'}-${local.schedule[day][1]}${local.schedule[day][1]>=12?'pm':'am'}`);
             } else {
                 schedule.push(`${day}: Cerrado`);
             }
