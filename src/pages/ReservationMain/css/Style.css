@@ -38,10 +38,8 @@
   min-height: 73vh;
   width: 100%;
 }
-.formContainer .sliderWrapper .Form-step-container .stepBody .BodyWrapper .BodyHeader {
-  height: 10vh;
-}
 .formContainer .sliderWrapper .Form-step-container .stepBody .BodyWrapper .ilustrationContainer {
+  margin-top: 10vh;
   height: 20vh;
   display: flex;
   justify-content: center;
@@ -101,6 +99,15 @@
 }
 .formContainer .sliderWrapper .Form-step-container .stepBody .BodyWrapper .Form .inputWrapper input:focus {
   outline: none;
+}
+.formContainer .sliderWrapper .Form-step-container .stepBody .BodyWrapper .formDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.formContainer .sliderWrapper .Form-step-container .stepBody .BodyWrapper .formDetails input {
+  width: 80%;
 }
 .formContainer .sliderWrapper .Form-step-container .nextStepButton {
   letter-spacing: 1px;

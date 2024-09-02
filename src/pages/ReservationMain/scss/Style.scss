@@ -36,10 +36,8 @@
                 min-height: 73vh;
                 width: 100%;
                 .BodyWrapper{
-                    .BodyHeader{
-                        height: 10vh;
-                    }
                     .ilustrationContainer{
+                        margin-top: 10vh;
                         height: 20vh;
                         display: flex;
                         justify-content: center;
@@ -98,6 +96,17 @@
                             }
                         }
                         
+                    }
+                    .formDetails{
+                        display: flex;
+                        flex-direction: column;
+                        // justify-content: center;
+                        gap: 20px;
+                        align-items: center;
+                        input{
+                            width: 80%;
+                            
+                        }
                     }
                 }
             }

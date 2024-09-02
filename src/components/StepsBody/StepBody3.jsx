@@ -12,12 +12,12 @@ function StepBody3({setStep}) {
       <div className="Form-step-container">
         <div className="stepBody">
           <div className="BodyWrapper">
-            <div className="BodyHeader">
-            </div>
             <div className="ilustrationContainer">
-                <img className="ilustration" src="/img/forks.svg" alt="Fork ilustration"/>
+                <img className="ilustration" src="/img/reservNaranja.png" alt="Form ilustration"/>
             </div>
-            <div className="Form">
+            <div className="formDetails">
+              <input type="text" />
+              <input type="text" />
               <input type="text" />
               <input type="text" />
               <input type="text" />
