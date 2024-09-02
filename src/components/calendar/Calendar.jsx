@@ -17,7 +17,7 @@ function Calendar({data, formInfo, setFormInfo}) {
     const limit = 3;
     const days = ['Dom', 'Lun','Mar','Mie','Jue','Vie','Sab'];
     let ClosedDays = [];
-    const getClosedDays = () => {
+    const getClosedDays = () => { //Obtener los dias que el local esta cerrado
         ClosedDays = [];
         for(let i = 0; i<data.locals.length; i++){
             if(data.locals[i]._id === formInfo.local){
@@ -48,14 +48,12 @@ function Calendar({data, formInfo, setFormInfo}) {
         return ;
     }
     
-    
-
-    const getDay = (day) => {
+    const getDay = (day) => { //Obtener el dia de la semana de una fecha pasada por parametro
         const dayName =  days[(new Date(currentYear, monthNumber, day).getDay())];
         return dayName;
     }
 
-    const writeMonth = (month) => {
+    const writeMonth = (month) => {//Escribe los dias del mes en el calendario 
         if (actualMonth === monthNumber && actualYear === currentYear) { //Si el mes es el actual
             document.getElementById('prev-month').classList.add('not-allowed'); //Desactivar el boton de mes anterior
         }else{
@@ -69,13 +67,13 @@ function Calendar({data, formInfo, setFormInfo}) {
 
         dates.innerHTML = '';
         
-        for(let i = startDay(); i>0;i--){
+        for(let i = startDay(); i>0;i--){ //Escribe los dias del mes anterior al actual
             dates.innerHTML += ` <div class="calendar__date calendar__item calendar__last-days">
                  ${getTotalDays(monthNumber-1)-(i-1)}
             </div>`;
         }
 
-        for(let i=1; i<=getTotalDays(month); i++){
+        for(let i=1; i<=getTotalDays(month); i++){ //Escribe los dias del mes actual
             if(i===currentDay&&month === actualMonth&&currentYear === actualYear){
                 if(ClosedDays.includes(getDay(i))){
                     dates.innerHTML += ` <div class="calendar__date calendar__today calendar__item calendar__disabled">${i}</div>`;
@@ -94,7 +92,7 @@ function Calendar({data, formInfo, setFormInfo}) {
         }
     }
 
-    const getTotalDays = month => {
+    const getTotalDays = month => { // Obtiene la cantidad de dias de un mes
         if(month === -1) month = 11;
 
         if (month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11) {
@@ -109,16 +107,16 @@ function Calendar({data, formInfo, setFormInfo}) {
         }
     }
 
-    const isLeap = () => {
+    const isLeap = () => {//Verifica si el año es bisiesto
         return ((currentYear % 100 !==0) && (currentYear % 4 === 0) || (currentYear % 400 === 0));
     }
 
-    const startDay = () => {
+    const startDay = () => { //Obtiene el dia de la semana en el que empieza el mes
         let start = new Date(currentYear, monthNumber, 1);
         return ((start.getDay()-1) === -1) ? 6 : start.getDay()-1;
     }
 
-    const lastMonth = () => {
+    const lastMonth = () => { //Call to Action para el boton de mes anterior
         if (actualMonth === monthNumber && actualYear === currentYear) return;
         if(monthNumber !== 0){
             monthNumber--;
@@ -130,7 +128,7 @@ function Calendar({data, formInfo, setFormInfo}) {
         setNewDate();
     }
 
-    const nextMonth = () => {
+    const nextMonth = () => {//Call to Action para el boton de mes siguiente
         if (currentYear > actualYear) return;
         if (monthNumber - actualMonth >= limit-1 && actualYear === currentYear) return;
         if(monthNumber !== 11){
@@ -143,8 +141,7 @@ function Calendar({data, formInfo, setFormInfo}) {
         setNewDate();
     }
 
-    const setNewDate = () => {
-
+    const setNewDate = () => {//Setea la nueva fecha en el calendario
         currentDate.setFullYear(currentYear,monthNumber,currentDay);
         month.textContent = monthNames[monthNumber];
         year.textContent = currentYear.toString();
