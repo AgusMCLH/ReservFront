@@ -5,22 +5,8 @@ import StepBody2 from "../StepsBody/StepBody2";
 import StepBody3 from "../StepsBody/StepBody3";
 
 
-function SliderMain({ setStep, data}) {
-    let [formInfo, setFormInfo] = React.useState({
-      motive: undefined,
-      comensales: undefined,
-      local: undefined,
-      date: undefined,
-      hour: undefined,
-      name: undefined,
-      phone: undefined,
-      email: undefined,
-  });
-    // useEffect(() => {
-    //   console.log(formInfo);
-    // }, [formInfo]);
-    
-    let settings = {
+function SliderMain({ setStep, data, formInfo, setFormInfo, viewHours, setViewHours}) {
+    const settings = {
       dots: false,
       infinite: false,
       speed: 200,
@@ -58,7 +44,7 @@ function SliderMain({ setStep, data}) {
     return (
           <Slider {...settings} style={{width:'100vw'}}>
             <StepBody1 setStep={setStep} formInfo={formInfo} setFormInfo={setFormInfo} data={data}/>
-            <StepBody2 setStep={setStep} formInfo={formInfo} setFormInfo={setFormInfo} data={data}/>
+            <StepBody2 setStep={setStep} viewHours={viewHours} setViewHours={setViewHours} formInfo={formInfo} setFormInfo={setFormInfo} data={data}/>
             <StepBody3 setStep={setStep}/>
           </Slider>
     );

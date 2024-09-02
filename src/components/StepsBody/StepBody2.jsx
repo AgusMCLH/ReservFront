@@ -1,10 +1,10 @@
 import React, {useRef} from "react";
 import Calendar from "../calendar/Calendar";
+import HourList from "../calendar/hourList/HourList";
 
 
-function StepBody2({setStep, data, formInfo, setFormInfo}) {
+function StepBody2({setStep, data, formInfo, setFormInfo, viewHours, setViewHours}) {
     let button = useRef();
-
     const nextStepHandler = () => {
       button.current.classList.contains('disabled') ? null : setStep(3);
     }
@@ -18,8 +18,9 @@ function StepBody2({setStep, data, formInfo, setFormInfo}) {
             <div className="ilustrationContainer">
                 <img className="ilustration" src="/img/reservNaranja.png" alt="Form ilustration"/>
             </div>
-            <div className="Form">
-              <Calendar data={data} formInfo={formInfo} setFormInfo={setFormInfo}/>
+            <div className="ReservationDatePicker">
+              <Calendar setViewHours={setViewHours} data={data} formInfo={formInfo} setFormInfo={setFormInfo}/>
+              <HourList data={data} setViewHours={setViewHours} viewHours={viewHours} formInfo={formInfo} setFormInfo={setFormInfo}/>
             </div>
           </div>
         </div>

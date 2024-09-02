@@ -6,7 +6,17 @@ import './css/Style.css'
 function SliderFrom({data}) {
   const prevButton = useRef();
   let [step, setStep] = useState(1);
-  
+  let [viewHours, setViewHours] = React.useState(false);
+  let [formInfo, setFormInfo] = React.useState({
+    motive: undefined,
+    comensales: undefined,
+    local: undefined,
+    date: undefined,
+    hour: undefined,
+    name: undefined,
+    phone: undefined,
+    email: undefined,
+});
   
 
   const decreaseStep = () => { step>1?setStep(step - 1):null; };
@@ -19,6 +29,19 @@ function SliderFrom({data}) {
   
   useEffect(() => {
     const prevStep = () => {
+      let dateSelectors = document.getElementsByClassName('selectionable');   
+      if (step===2) {
+        console.log('clase Borrada');
+        for(let i = 0; i<dateSelectors.length; i++){
+          if (dateSelectors[i].classList.contains('selected')) {
+              dateSelectors[i].classList.remove('selected');
+          }
+        }
+        
+      }     
+      step===2?setFormInfo({...formInfo, date: undefined}):null;
+      step===2?setViewHours(false):null;
+  
       document.getElementsByClassName('slick-prev')[0].click();
     }
     prevButton.current.addEventListener('click', prevStep);
@@ -27,7 +50,7 @@ function SliderFrom({data}) {
     return () => {
       prevButton.current.removeEventListener('click', prevStep);
     }
-  }, []);
+  }, [formInfo,step]);
 
  
 
@@ -38,7 +61,7 @@ function SliderFrom({data}) {
         <div className="progressBar__progression" id="progressBar__progression"></div>
       </div>
       <div className="sliderWrapper">
-        <SliderMain data={data} setStep={setStep}  />
+        <SliderMain formInfo={formInfo} viewHours={viewHours} setViewHours={setViewHours} setFormInfo={setFormInfo} data={data} setStep={setStep}  />
         <div ref={prevButton} onClick={()=>{decreaseStep()}} className="previousStepButton"></div>
         <div className="ShopLogo"></div>
         <div className="footer">

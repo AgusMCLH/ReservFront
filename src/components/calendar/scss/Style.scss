@@ -69,8 +69,13 @@ $bg: darken(#fff, 10%);
       border-radius: 3px;
       cursor: pointer;
       transition: .5s all;
-      &:hover{
-        background-color: rgba(136, 173, 153, 0.7);
+      border: unset;
+      &.selectionable:hover{
+        background-color: $color-primary;
+        border: 1px solid $color-tertiary;
+      }
+      &.selected{
+        border: 1px solid $color-primary;
       }
     }
   }

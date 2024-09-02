@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './css/Style.css'
+let dateSelected = undefined;
 
-function Calendar({data, formInfo, setFormInfo}) {
+function Calendar({data, formInfo, setFormInfo, setViewHours}) {
+    let [_monthNumber, setMonthNumber] = useState(new Date().getMonth());
+    let [_setDate, setDate] = useState('');
     let monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre','Octubre', 'Noviembre', 'Diciembre'];
     let currentDate = new Date();
     let currentDay = currentDate.getDate();
@@ -120,6 +123,7 @@ function Calendar({data, formInfo, setFormInfo}) {
         if (actualMonth === monthNumber && actualYear === currentYear) return;
         if(monthNumber !== 0){
             monthNumber--;
+            setMonthNumber(monthNumber);
         }else{
             monthNumber = 11;
             currentYear--;
@@ -133,6 +137,7 @@ function Calendar({data, formInfo, setFormInfo}) {
         if (monthNumber - actualMonth >= limit-1 && actualYear === currentYear) return;
         if(monthNumber !== 11){
             monthNumber++;
+            setMonthNumber(monthNumber);
         }else{
             monthNumber = 0;
             currentYear++;
@@ -148,17 +153,38 @@ function Calendar({data, formInfo, setFormInfo}) {
         dates.textContent = '';
         writeMonth(monthNumber);
     }
-    let dateSelected = undefined;
-    const selectHandeler = (e) => {
+    
+    // useEffect(() => {
+    //     console.log('formDate', formInfo);
+    // }, [formInfo.date]);
+        
+
+    let selectHandeler = (e) => {
         if(e.target.classList.contains('selectionable')){
             if(dateSelected){
                 dateSelected.classList.remove('selected');
             }
+            let forminfo = {...formInfo};
+            forminfo.date = `${e.target.textContent<10?'0':''}${e.target.textContent}/${_monthNumber<9?'0':''}${_monthNumber+1}/${currentYear}`;
+            setFormInfo({...forminfo});
+            setViewHours(true);
+            
             dateSelected = e.target;
             e.target.classList.add('selected');
         }
     }
     
+    useEffect(() => {
+        let dateSelectors = document.getElementsByClassName('selectionable');        
+        for(let i = 0; i<dateSelectors.length; i++){
+            dateSelectors[i].addEventListener('click', selectHandeler);
+        }
+        return () => {            
+            for(let i = 0; i<dateSelectors.length; i++){
+                dateSelectors[i].removeEventListener('click', selectHandeler);
+            }
+        }
+    }, [_monthNumber, formInfo.local]);
     
     useEffect(() => {
         dates = document.getElementById('dates');
