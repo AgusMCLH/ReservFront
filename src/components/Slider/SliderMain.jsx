@@ -5,7 +5,7 @@ import StepBody2 from "../StepsBody/StepBody2";
 import StepBody3 from "../StepsBody/StepBody3";
 
 
-function SliderMain({ setStep, data, formInfo, setFormInfo, viewHours, setViewHours}) {
+function SliderMain({ setStep, data, formInfo, setFormInfo, viewHours, setViewHours, step}) {
     const settings = {
       dots: false,
       infinite: false,
@@ -20,6 +20,7 @@ function SliderMain({ setStep, data, formInfo, setFormInfo, viewHours, setViewHo
         if (e.target.classList.contains('disabled')) {
           return;
         }
+        step===2?setViewHours(false):null;
         document.getElementsByClassName('slick-next')[0].click();
       };
         // Agrego los event Listeners
@@ -36,7 +37,8 @@ function SliderMain({ setStep, data, formInfo, setFormInfo, viewHours, setViewHo
               nextButtons[i].removeEventListener('click', nextStep);
             }
           }
-    }, []);
+          
+    }, [step]);
     
       
 

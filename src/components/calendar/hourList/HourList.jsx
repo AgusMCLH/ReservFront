@@ -16,7 +16,7 @@ const HourList = ({ hoursUnavailable, setViewHours, viewHours, formInfo, setForm
             let hourListContainer = document.getElementById("hour-card__container");
             hourListContainer.style.height = "0px";
         }
-    }, [formInfo.date]);
+    }, [formInfo.date, viewHours]);
 
     useEffect(() => {
         console.log('formHour', formInfo);

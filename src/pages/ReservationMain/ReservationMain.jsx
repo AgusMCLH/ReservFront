@@ -41,6 +41,7 @@ function SliderFrom({data}) {
       }     
       step===2?setFormInfo({...formInfo, date: undefined}):null;
       step===2?setViewHours(false):null;
+      step===3?setViewHours(true):null;
   
       document.getElementsByClassName('slick-prev')[0].click();
     }
@@ -61,7 +62,7 @@ function SliderFrom({data}) {
         <div className="progressBar__progression" id="progressBar__progression"></div>
       </div>
       <div className="sliderWrapper">
-        <SliderMain formInfo={formInfo} viewHours={viewHours} setViewHours={setViewHours} setFormInfo={setFormInfo} data={data} setStep={setStep}  />
+        <SliderMain step={step} formInfo={formInfo} viewHours={viewHours} setViewHours={setViewHours} setFormInfo={setFormInfo} data={data} setStep={setStep}  />
         <div ref={prevButton} onClick={()=>{decreaseStep()}} className="previousStepButton"></div>
         <div className="ShopLogo"></div>
         <div className="footer">
