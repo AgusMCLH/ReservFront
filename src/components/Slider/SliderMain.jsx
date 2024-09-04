@@ -47,7 +47,7 @@ function SliderMain({ setStep, data, formInfo, setFormInfo, viewHours, setViewHo
           <Slider {...settings} style={{width:'100vw'}}>
             <StepBody1 setStep={setStep} formInfo={formInfo} setFormInfo={setFormInfo} data={data}/>
             <StepBody2 setStep={setStep} viewHours={viewHours} setViewHours={setViewHours} formInfo={formInfo} setFormInfo={setFormInfo} data={data}/>
-            <StepBody3 setStep={setStep}/>
+            <StepBody3 setStep={setStep} formInfo={formInfo} setFormInfo={setFormInfo}/>
           </Slider>
     );
   }
