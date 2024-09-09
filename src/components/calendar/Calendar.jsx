@@ -17,7 +17,7 @@ function Calendar({data, formInfo, setFormInfo, setViewHours}) {
     let nextMonthDOM = undefined;
     let actualMonth = new Date().getMonth();
     let actualYear = new Date().getFullYear();
-    const limit = 3;
+    const limit = 6;
     const days = ['Dom', 'Lun','Mar','Mie','Jue','Vie','Sab'];
     let ClosedDays = [];
     const getClosedDays = () => { //Obtener los dias que el local esta cerrado
