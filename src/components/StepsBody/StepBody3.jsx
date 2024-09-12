@@ -9,14 +9,13 @@ function StepBody3({setStep, formInfo, setFormInfo}) {
       phone: false,
       comensales: false,
     });
+    let [comensalesValue, setComensalesValue] = React.useState(0);
 
     const nextStepHandler = () => {
       button.current.classList.contains('disabled') ? null : setStep(4);
     }
     const changeHandeler = (e) => {
       let valor = e.target.value;
-      let onlyNumbers = new RegExp('/^\d+$/');
-      console.log(e.target.attributes.field.value);
       
       switch (e.target.attributes.field.value) {
           case 'name':
@@ -54,6 +53,12 @@ function StepBody3({setStep, formInfo, setFormInfo}) {
 
           case 'phone':
             setValidationState({...validationState, phone: false});
+            let onlyNumbers = new RegExp('^[0-9]+$');
+            if (!onlyNumbers.test(valor)) {
+              document.getElementById(e.target.attributes.id.value).value = valor.slice(0,valor.length-1)
+              setFormInfo({...formInfo, phone: undefined});
+              return
+            }
             if (valor.length<9 ) {
               setFormInfo({...formInfo, phone: undefined});
               return
@@ -64,22 +69,54 @@ function StepBody3({setStep, formInfo, setFormInfo}) {
           break;
 
           case 'comensales':
-            console.log('Esto es comensales');
+            console.log('comensales');
+            if (comensalesValue<1) {
+              setFormInfo({...formInfo, comensales: undefined});
+              setValidationState({...validationState, comensales: false});
+              return
+            }
+            setFormInfo({...formInfo, comensales: comensalesValue});
+            setValidationState({...validationState, comensales: true});
           break;
 
           case 'motive':
+            valor.length>300?document.getElementById(e.target.attributes.id.value).value = valor.slice(0,300):null;
+            setFormInfo({...formInfo, motive: document.getElementById(e.target.attributes.id.value).value});
             console.log('Esto es motive');
           break;
       
         default:
           return
-
       }
     }
+    let clickComensalesHandler = (e) => {
+        if (e.target.classList.contains('plusButton') && comensalesValue < 12) {
+          setComensalesValue(comensalesValue+1);
+          return
+        }
+        if ( comensalesValue === 12) {
+          return
+        }
+        comensalesValue>0?setComensalesValue(comensalesValue-1):null;
+    }
     useEffect(() => {
-      console.log('Validation State:', validationState);
-    }, [validationState])
-      
+
+      if (validationState.name && validationState.email && validationState.phone && validationState.comensales) {
+        console.log(formInfo);
+    
+      }
+    }, [validationState]) 
+    useEffect(() => {
+      let comensales = document.getElementById('comensalesInput');
+      comensales.value = comensalesValue;
+      if (comensalesValue>0 ) {
+        setValidationState({...validationState, comensales: true});
+        setFormInfo({...formInfo, comensales: comensalesValue});
+      }else{
+        setValidationState({...validationState, comensales: false});
+        setFormInfo({...formInfo, comensales: undefined});
+      }
+    }, [comensalesValue])
     return (
       <div className="Form-step-container">
         <div className="stepBody">
@@ -102,18 +139,18 @@ function StepBody3({setStep, formInfo, setFormInfo}) {
               </div>
 
               <div className="floating-label">      
-                <input className="floating-input" type="Number" id="phoneInput" maxLength='10' placeholder=" " field='phone' required={true} onChange={changeHandeler}/>
+                <input className="floating-input" type="text" id="phoneInput" maxLength='10' placeholder=" " field='phone' required={true} onChange={changeHandeler}/>
                 <span className="highlight"></span>
                 <label>Telefono</label>
               </div>
               <div className="floating-label">      
-                <input className="floating-input" type="Number" id="comensalesInput" placeholder=" " field='comensales' required={true} onChange={changeHandeler}/>
+                <div className="plusButton" onClick={clickComensalesHandler}></div><input className="floating-input" value={comensalesValue} type="Number" id="comensalesInput" placeholder=" " field='comensales' required={true} disabled onChange={changeHandeler}/><div className="lessButton" onClick={clickComensalesHandler}></div>
                 <span className="highlight"></span>
                 <label>Comensales</label>
               </div>
 
               <div className="floating-label">      
-                <textarea className="floating-input floating-textarea" field='motive' placeholder=" " onChange={changeHandeler}></textarea>
+                <textarea className="floating-input floating-textarea" field='motive' id="motive" placeholder=" " onChange={changeHandeler}></textarea>
                 <span className="highlight"></span>
                 <label>Tienes Algun Motivo Especial?</label>
               </div>

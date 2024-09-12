@@ -115,6 +115,25 @@
   /* highlighter */
   /* active state */
 }
+.formContainer .sliderWrapper .Form-step-container .stepBody .BodyWrapper .formDetails .floating-form .floating-label .plusButton {
+  position: absolute;
+  border-radius: 50px;
+  aspect-ratio: 1/1;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.062745098);
+  top: 0px;
+  z-index: 3;
+  right: 0px;
+}
+.formContainer .sliderWrapper .Form-step-container .stepBody .BodyWrapper .formDetails .floating-form .floating-label .lessButton {
+  position: absolute;
+  border-radius: 50px;
+  aspect-ratio: 1/1;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.062745098);
+  top: 0px;
+  left: 0px;
+}
 .formContainer .sliderWrapper .Form-step-container .stepBody .BodyWrapper .formDetails .floating-form .floating-label .floating-input, .formContainer .sliderWrapper .Form-step-container .stepBody .BodyWrapper .formDetails .floating-form .floating-label .floating-select {
   position: relative;
   font-size: 14px;
@@ -125,6 +144,9 @@
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #292c31;
+}
+.formContainer .sliderWrapper .Form-step-container .stepBody .BodyWrapper .formDetails .floating-form .floating-label #comensalesInput {
+  text-align: center;
 }
 .formContainer .sliderWrapper .Form-step-container .stepBody .BodyWrapper .formDetails .floating-form .floating-label .floating-input:required ~ label::after {
   content: " *";
